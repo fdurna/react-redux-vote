@@ -1,24 +1,19 @@
-import React , {useState} from 'react'
+import React  from 'react'
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
+import { addCard } from '../redux/actions/CardAction';
 
-function AddItem() {
+
+
+function AddCard() {
+  const dispathch = useDispatch();
+  const {cards} = useSelector((state) => state.CardReducers);
   const { register, handleSubmit } = useForm();
-  const [data, setData] = useState("");
-
   const onSubmit = (data) => {
-    var nData = [{ 
-      name:data.name, 
-      url:data.url, 
-      counter:0,
-      id:(new Date()).getTime()
-    }]
-    const array = localStorage.getItem("items");
-    const parsedArray = array ? JSON.parse(array) : [];
-    const newArray = [...parsedArray, nData];
-    localStorage.setItem("items", JSON.stringify(newArray))
+    dispathch(addCard(data))
   }
-
+  console.log(cards)
   return (
     <>
     <div className="add-item">
@@ -35,14 +30,13 @@ function AddItem() {
         </div>
         <div className="form-group">
           <label>Url</label>
-          <input {...register("url")} className="form-control" type="text" name="name" placeholder=""/>
+          <input {...register("url")} className="form-control" type="text" name="url" placeholder=""/>
         </div>
         <input type="submit" className="btn btn-primary" value="Submit"/>
       </form>
-      <p>{data}</p>
     </div>
     </>
   )
 }
 
-export default AddItem
+export default AddCard
