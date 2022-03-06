@@ -1,0 +1,72 @@
+$myColor: red;
+
+.card-container {
+  width: 420px;
+  margin: 0 auto;
+  .card-select {
+    .select-wrapper {
+    }
+  }
+  .card-list {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    .card-point {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      background-color: #dfdfdf;
+      padding: 20px 20px;
+      border-radius: 15px;
+      color: black;
+      border: 1px solid #a7a7a7;
+      strong {
+        font-size: 30px;
+      }
+      span {
+      }
+    }
+    .card-item {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      .top {
+        margin-bottom: 20px;
+        .card-name {
+          font-weight: bold;
+          font-size: 25px;
+        }
+        .card-url {
+          a {
+          }
+        }
+      }
+      .bottom {
+        .up,
+        .down {
+          span {
+            margin-left: 6px;
+          }
+        }
+        .up {
+          margin-right: 20px;
+          i {
+          }
+        }
+        .down {
+          margin-left: 20px;
+          i {
+          }
+        }
+        .remove {
+          position: absolute;
+          top: 0;
+          right: 0;
+          i {
+          }
+        }
+      }
+    }
+  }
+}
