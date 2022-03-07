@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getCards } from '../redux/actions/CardAction';
+import React, {  useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getCards } from "../redux/actions/CardAction";
+import CardDetail from './CardDetail'
 
 function ListCard() {
-    const dispatch = useDispatch();
-    const {cards,loading} = useSelector((state) => state.CardReducers);
-    
-    useEffect(()=>{
-        dispatch(getCards());
-        console.log(cards)
-    },[dispatch])
+  const dispatch = useDispatch();
+  const { cards } = useSelector((state) => state.CardReducers);
+
+  useEffect(() => {
+    dispatch(getCards());
+  }, [dispatch]);
 
   return (
     <>
@@ -20,33 +20,9 @@ function ListCard() {
           <option value="asc">Less Voted (A -{">"} Z)</option>
         </select>
       </div>
-      <div className="card-list">
-        <div className="card-point">
-          <strong>{cards.counter}</strong>
-          <span>VOTES</span>
-        </div>
-        <div className="card-item">
-          <div className="top">
-            <div className="card-name">{cards.name}</div>
-            <div className="card-url">
-              <a target="_blank">{cards.url}</a>
-            </div>
-          </div>
-          <div className="bottom">
-            <a className="up" >
-              <i className="fas fa-arrow-up"></i>
-              <span>Up Vote</span>
-            </a>
-            <a className="down">
-              <i className="fas fa-arrow-down"></i> 
-              <span>Up Down</span>
-            </a>
-            <a className="remove">
-              <i className="fas fa-minus-circle"></i>
-            </a>
-          </div>
-        </div>
-      </div>
+      {cards.map((item) => (
+        <CardDetail item={item} />
+      ))}
     </>
   );
 }

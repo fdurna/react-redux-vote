@@ -3,3 +3,5 @@ export const GET_CARD_SUCCESS = 'GET_CARD_SUCCESS';
 export const GET_CARD_FAILED = 'GET_CARD_FAILED';
 
 export const CARD_ITEM_ADD = 'CARD_ITEM_ADD';
+export const CARD_ITEM_REMOVE = 'CARD_ITEM_REMOVE';
+
