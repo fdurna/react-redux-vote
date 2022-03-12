@@ -48,3 +48,33 @@ export const removeCard = (link) => (dispatch) => {
     payload: filtered,
   });
 };
+
+export const sortCardAsc = () => (dispatch,getState) => {
+  const {CardReducers} = getState();
+  dispatch({
+      type: actions.SORT_CARD_ASC,
+      payload:CardReducers.cards
+    })
+}
+
+export const sortCardDesc = () => (dispatch,getState) => {
+  const {CardReducers} = getState();
+  dispatch({ 
+    type: actions.SORT_CARD_DESC,
+    payload:CardReducers.cards
+  })
+}
+
+export const upCardVote = (id) => (dispatch) => {
+  dispatch({ 
+    type: actions.UP_CARD_VOTE,
+    payload:{id}
+  })
+}
+
+export const downCardVote = (id) => (dispatch) => {
+  dispatch({ 
+    type: actions.DOWN_CARD_VOTE,
+    payload:{id}
+  })
+}

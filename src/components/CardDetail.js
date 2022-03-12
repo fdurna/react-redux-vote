@@ -1,15 +1,16 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { removeCard } from "../redux/actions/CardAction";
+import { useDispatch } from "react-redux";
+import { removeCard , upCardVote , downCardVote } from "../redux/actions/CardAction";
 
 
 function CardDetail({item}) {
     const dispatch = useDispatch();
-
-    console.log(item)
     const onRemove = (link) => {
         dispatch(removeCard(link))
     }
+    const upVote = (Id) => dispatch(upCardVote(Id));
+    const downVote = (Id) => dispatch(downCardVote(Id))
+    const Id = item.id;
   return (
     <div className="card-list" >
       <div className="card-point">
@@ -24,11 +25,11 @@ function CardDetail({item}) {
           </div>
         </div>
         <div className="bottom">
-          <a className="up" href="/#">
+          <a className="up" href={void(0)} onClick={() => upVote(Id)}>
             <i className="fas fa-arrow-up"></i>
             <span>Up Vote</span>
           </a>
-          <a className="down" href="/#">
+          <a className="down" href={void(0)} onClick={() => downVote(Id)}>
             <i className="fas fa-arrow-down"></i>
             <span>Up Down</span>
           </a>

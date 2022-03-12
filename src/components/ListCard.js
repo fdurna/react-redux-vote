@@ -1,23 +1,29 @@
-import React, {  useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCards } from "../redux/actions/CardAction";
+import { getCards , sortCardDesc,sortCardAsc} from "../redux/actions/CardAction";
 import CardDetail from './CardDetail'
 
 function ListCard() {
   const dispatch = useDispatch();
   const { cards } = useSelector((state) => state.CardReducers);
-
+  const [sort,setSort] = useState('asc')
   useEffect(() => {
     dispatch(getCards());
-  }, [dispatch]);
+    if(sort === 'desc'){
+      dispatch(sortCardDesc())
+    }
+    if(sort === 'asc'){
+      dispatch(sortCardAsc())
+    }
+  }, [sort,dispatch]);
 
   return (
     <>
       <div className="form-group select-wrapper">
-        <select className="form-control">
+        <select onChange={(e) => setSort(e.target.value)} className="form-control">
           <option value="">Order by</option>
-          <option value="desc">Most Voted (Z -{">"} A)</option>
-          <option value="asc">Less Voted (A -{">"} Z)</option>
+          <option value="asc">Most Voted (Z -{">"} A)</option>
+          <option value="desc">Less Voted (A -{">"} Z)</option>
         </select>
       </div>
       {cards.map((item) => (
