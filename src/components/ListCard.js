@@ -21,7 +21,7 @@ function ListCard() {
         </select>
       </div>
       {cards.map((item) => (
-        <CardDetail item={item} />
+        <CardDetail item={item} key={item.id} />
       ))}
     </>
   );

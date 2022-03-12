@@ -11,6 +11,11 @@ export const CardReducers = (state = initialState, action) => {
         ...state,
         cards: action.payload,
       };
+    case actions.CARD_ITEM_REMOVE:
+      return {
+        ...state,
+        cards: action.payload,
+      };
     case actions.GET_CARD_REQUEST:
       return {
         ...state,

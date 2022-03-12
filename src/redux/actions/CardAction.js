@@ -38,16 +38,13 @@ export const getCards = () => async (dispatch) => {
 export const removeCard = (link) => (dispatch) => {
   let items = JSON.parse(localStorage.getItem("cards"));
   const filtered = items.filter(item => item.id !== link);
+  localStorage.setItem("cards", JSON.stringify(filtered));
   console.log(filtered)
-  /*
-  localStorage.setItem("cards", JSON.stringify(items));
   if (items.length === 0) {
     localStorage.removeItem("cards");
   }
-  console.log(items)
   dispatch({
     type: actions.CARD_ITEM_REMOVE,
-    payload: newArray,
+    payload: filtered,
   });
-  */
 };

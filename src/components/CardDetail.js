@@ -11,7 +11,7 @@ function CardDetail({item}) {
         dispatch(removeCard(link))
     }
   return (
-    <div className="card-list" key={item.id}>
+    <div className="card-list" >
       <div className="card-point">
         <strong>{item.counter}</strong>
         <span>VOTES</span>
