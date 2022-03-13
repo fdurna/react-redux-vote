@@ -66,6 +66,13 @@ export const sortCardDesc = () => (dispatch,getState) => {
 }
 
 export const upCardVote = (id) => (dispatch) => {
+  let items = JSON.parse(localStorage.getItem("cards"));
+  items.map((item) =>{
+    if(item.id === id){
+      item.counter++;
+    }
+  })
+  localStorage.setItem('cards', JSON.stringify(items));
   dispatch({ 
     type: actions.UP_CARD_VOTE,
     payload:{id}
@@ -73,6 +80,13 @@ export const upCardVote = (id) => (dispatch) => {
 }
 
 export const downCardVote = (id) => (dispatch) => {
+  let items = JSON.parse(localStorage.getItem("cards"));
+  items.map((item) => {
+    if(item.id === id){
+      item.counter--;
+    }
+  })
+  localStorage.setItem('cards', JSON.stringify(items));
   dispatch({ 
     type: actions.DOWN_CARD_VOTE,
     payload:{id}

@@ -18,7 +18,7 @@ export const CardReducers = (state = initialState, action) => {
       };
     case actions.SORT_CARD_ASC:
       const sortAsc = action.payload.sort((a, b) =>
-        a.name < b.name ? 1 : a.name > b.name ? -1 : 0
+        b.counter - a.counter 
       );
       return {
         ...state,
@@ -26,37 +26,45 @@ export const CardReducers = (state = initialState, action) => {
       };
     case actions.SORT_CARD_DESC:
       const sortDesc = action.payload.sort((a, b) =>
-        a.name < b.name ? -1 : a.name > b.name ? 1 : 0
+        a.counter - b.counter 
       );
       return {
         ...state,
         cards: sortDesc,
       };
     case actions.UP_CARD_VOTE:
+      const counterUp = state.cards.map((item) => {
+        if (item.id === action.payload.id) {
+          return {
+            ...item,
+            counter: item.counter + 1,
+          };
+        }
+        return item;
+      })
+      const counterUpFilter = counterUp.sort((a, b) =>
+        b.counter - a.counter
+      );
       return {
         ...state,
-        cards: state.cards.map((item) => {
-          if (item.id === action.payload.id) {
-            return {
-              ...item,
-              counter: item.counter + 1,
-            };
-          }
-          return item;
-        }),
+        cards: counterUpFilter
       };
     case actions.DOWN_CARD_VOTE:
+      const counterDown = state.cards.map((item) => {
+        if (item.id === action.payload.id) {
+          return {
+            ...item,
+            counter: item.counter - 1,
+          };
+        }
+        return item;
+      })
+      const counterDownFilter = counterDown.sort((a, b) =>
+        a.counter - b.counter
+      );
       return {
         ...state,
-        cards: state.cards.map((item) => {
-          if (item.id === action.payload.id) {
-            return {
-              ...item,
-              counter: item.counter - 1,
-            };
-          }
-          return item;
-        }),
+        cards: counterDownFilter
       };
     case actions.GET_CARD_REQUEST:
       return {

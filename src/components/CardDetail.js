@@ -5,9 +5,7 @@ import { removeCard , upCardVote , downCardVote } from "../redux/actions/CardAct
 
 function CardDetail({item}) {
     const dispatch = useDispatch();
-    const onRemove = (link) => {
-        dispatch(removeCard(link))
-    }
+    const onRemove = (link) =>  dispatch(removeCard(link))
     const upVote = (Id) => dispatch(upCardVote(Id));
     const downVote = (Id) => dispatch(downCardVote(Id))
     const Id = item.id;

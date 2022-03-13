@@ -22,8 +22,8 @@ function ListCard() {
       <div className="form-group select-wrapper">
         <select onChange={(e) => setSort(e.target.value)} className="form-control">
           <option value="">Order by</option>
-          <option value="asc">Most Voted (Z -{">"} A)</option>
-          <option value="desc">Less Voted (A -{">"} Z)</option>
+          <option value="asc">Most Voted </option>
+          <option value="desc">Less Voted</option>
         </select>
       </div>
       {cards.map((item) => (
