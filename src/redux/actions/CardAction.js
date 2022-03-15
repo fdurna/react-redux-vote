@@ -92,3 +92,15 @@ export const downCardVote = (id) => (dispatch) => {
     payload:{id}
   })
 }
+
+export const searchCard = (query) => async(dispatch,getState) => {
+  const {CardReducers} = getState();
+  const searchResults = CardReducers.searchResults.filter((card)=>
+    card.name.toLowerCase().includes(query.toLowerCase())
+  );
+  console.log(searchResults)
+  dispatch({
+    type:actions.SEARCH_CARD,
+    payload:searchResults
+  })
+}

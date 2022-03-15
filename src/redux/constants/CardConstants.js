@@ -11,5 +11,7 @@ export const SORT_CARD_DESC = 'SORT_CARD_DESC';
 export const UP_CARD_VOTE = 'VOTE_CARD_UP';
 export const DOWN_CARD_VOTE = 'VOTE_CARD_DOWN';
 
+export const SEARCH_CARD = 'SEARCH_CARD';
+
 
 

@@ -2,6 +2,7 @@ import * as actions from "../constants/CardConstants";
 
 const initialState = {
   cards: [],
+  searchResults:[],
 };
 
 export const CardReducers = (state = initialState, action) => {
@@ -76,6 +77,7 @@ export const CardReducers = (state = initialState, action) => {
         ...state,
         loading: false,
         cards: action.payload,
+        searchResults: action.payload,
       };
     case actions.GET_CARD_FAILED:
       return {
@@ -83,6 +85,11 @@ export const CardReducers = (state = initialState, action) => {
         loading: false,
         error: action.payload,
       };
+    case actions.SEARCH_CARD:
+      return {
+        ...state,
+        cards:action.payload
+      }
     default:
       return state;
   }
